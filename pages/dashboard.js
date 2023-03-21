@@ -1,7 +1,27 @@
-function Dashboard(){
-    return (
-        <h1>Dashboard</h1>
-    )
+import { getSession, signIn, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+
+function Dashboard() {
+  const [loading, setLoading] = useState(true);
+//   const { data: session } = useSession({
+//     required: false,
+//   });
+  useEffect(() => {
+    const securePgae = async () => {
+      const session = await getSession();
+      console.log(session);
+      if(session === null){
+        signIn()
+      }else{
+        setLoading(false);
+      }
+    }
+    securePgae()
+}, [loading]);
+if(loading){
+    return <h2>...Loading</h2>
+}
+  return <h1>Dashboard</h1>;
 }
 
-export default Dashboard
+export default Dashboard;
