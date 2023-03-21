@@ -1,11 +1,8 @@
-import { getSession, signIn, useSession } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
-//   const { data: session } = useSession({
-//     required: false,
-//   });
   useEffect(() => {
     const securePgae = async () => {
       const session = await getSession();
