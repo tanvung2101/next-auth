@@ -7,7 +7,12 @@ import { useSession } from 'next-auth/react';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const {data: session} = useSession();
+  const {data: session} = useSession({
+    required: true,
+    onUnauthenticated(){
+      
+    }
+  });
   return (
     <>
       <Head>
